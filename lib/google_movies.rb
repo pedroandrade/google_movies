@@ -8,7 +8,7 @@ module GoogleMovies
   
   class Client
     
-    ROOT_URL = "http://www.google.com/movies"
+    ROOT_URL = "http://google.com/movies"
     
     def initialize(city)
       @city = city
