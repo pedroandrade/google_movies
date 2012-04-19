@@ -40,7 +40,8 @@ module HttpCapture
 	def create_movie_with(movie)
 		name = movie.search('div[@class="name"]').first.search('a').first.content
 		id = movie.search('div[@class="name"]').first.search('a').first.attr("href").split("&mid=")[1]
-		GoogleMovies::Movie.new(name, id)
+		info = movie.search('span[@class="info"]').first.content
+		GoogleMovies::Movie.new(name, id, info)
 	end
   
   def get_movies(theater)

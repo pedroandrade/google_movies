@@ -1,3 +1,4 @@
+# encoding: utf-8 
 require 'spec_helper'
 
 describe HttpCapture do
@@ -28,5 +29,11 @@ describe HttpCapture do
 
 	it "should return movie with id" do
 		subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].movies[0].id.should == "9ff9a2dc6776dc6e"
+	end
+	
+	it "should return movie information" do
+		movie_information = "‎Rated 12 anos‎‎ - Subtitled in Portuguese‎"
+		movie = subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].movies[0]
+		movie.information.should eql(movie_information)
 	end
 end
