@@ -25,6 +25,12 @@ Or install it yourself as:
 
 		client.movies_theaters
 
+### Contributers
+
+
+* [Lucas Allan](http://github.com/lucasallan)
+* [Maurício Voto](https://github.com/mvoto)
+
 ## License
 
 ###(The MIT License)
