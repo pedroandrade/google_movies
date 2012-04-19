@@ -19,7 +19,7 @@ module HttpCapture
     @doc.search('div[@class="theater"]').each do |theater|
       movies = []
       movies = get_movies(theater)
-      @movies_theater << GoogleMovies::MovieTheater.new(theater.search('h2[@class="name"]').first.content, theater.search('div[@class="info"]').first.content, movies)
+      @movies_theater << create_movie_theater_with(theater, movies)
     end
     @movies_theater
   end
@@ -29,11 +29,19 @@ module HttpCapture
   def page_doc(uri)
     Nokogiri::HTML(Net::HTTP.get_response(uri).body)
   end
+
+	def create_movie_theater_with(theater, movies)
+		GoogleMovies::MovieTheater.new(theater.search('h2[@class="name"]').first.content, theater.search('div[@class="info"]').first.content, movies)
+	end
+	
+	def create_movie_with(movie)
+		GoogleMovies::Movie.new(movie.search('div[@class="name"]').first.search('a').first.content)
+	end
   
   def get_movies(theater)
     movies = []
-    theater.search('div[@class="movie"]').each do |movie|
-      movies << GoogleMovies::Movie.new(movie.search('div[@class="name"]').first.search('a').first.content)
+    theater.search('div[@class="movie"]').each do |movie_document|
+      movies << create_movie_with(movie_document)
     end
     movies
   end  

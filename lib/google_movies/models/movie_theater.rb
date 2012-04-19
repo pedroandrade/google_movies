@@ -1,7 +1,7 @@
 module GoogleMovies
   class MovieTheater
   
-    attr_accessor :movies, :name, :address
+    attr_accessor :movies, :name, :address, :id
   
     def initialize(name, address, movies = [])
       @movies = movies

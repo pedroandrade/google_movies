@@ -11,14 +11,16 @@ describe HttpCapture do
     mock_uri = URI.parse(URI.encode("http://www.google.com/movies?near=Joao%20Pessoa".strip))
     ClientTest.any_instance.should_receive(:page_doc).with(mock_uri).and_return(@page)
   end
+
+	subject { @client = ClientTest.new }
   
   it "should return one movie theater" do
     @client = ClientTest.new
-    @client.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa").size.should == 1
+    subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa").size.should == 1
   end
   
   it "should return the movies" do
     @client = ClientTest.new
-    @client.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].movies.size.should == 6
+    subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].movies.size.should == 6
   end
 end
