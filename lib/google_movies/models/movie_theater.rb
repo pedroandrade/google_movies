@@ -3,10 +3,11 @@ module GoogleMovies
   
     attr_accessor :movies, :name, :address, :id
   
-    def initialize(name, address, movies = [])
+    def initialize(name, address, id, movies = [])
       @movies = movies
       @name = name
       @address = address
+			@id = id
     end
   end
 end

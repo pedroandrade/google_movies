@@ -31,11 +31,16 @@ module HttpCapture
   end
 
 	def create_movie_theater_with(theater, movies)
-		GoogleMovies::MovieTheater.new(theater.search('h2[@class="name"]').first.content, theater.search('div[@class="info"]').first.content, movies)
+		id = theater.search('div[@class="desc"]').first.attr("id").gsub("theater_", "")
+		name = theater.search('h2[@class="name"]').first.content
+		info = theater.search('div[@class="info"]').first.content
+		GoogleMovies::MovieTheater.new(name, info, id, movies)
 	end
 	
 	def create_movie_with(movie)
-		GoogleMovies::Movie.new(movie.search('div[@class="name"]').first.search('a').first.content)
+		name = movie.search('div[@class="name"]').first.search('a').first.content
+		id = movie.search('div[@class="name"]').first.search('a').first.attr("href").split("&mid=")[1]
+		GoogleMovies::Movie.new(name, id)
 	end
   
   def get_movies(theater)

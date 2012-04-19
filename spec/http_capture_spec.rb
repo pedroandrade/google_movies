@@ -15,12 +15,18 @@ describe HttpCapture do
 	subject { @client = ClientTest.new }
   
   it "should return one movie theater" do
-    @client = ClientTest.new
     subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa").size.should == 1
   end
   
   it "should return the movies" do
-    @client = ClientTest.new
     subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].movies.size.should == 6
   end
+
+	it "should return movie theater with id" do
+    subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].id.should == "9897515771859860123"		
+	end
+
+	it "should return movie with id" do
+		subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].movies[0].id.should == "9ff9a2dc6776dc6e"
+	end
 end
