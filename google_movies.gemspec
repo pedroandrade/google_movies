@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "google_movies"
   gem.require_paths = ["lib"]
   gem.version       = GoogleMovies::VERSION
-  
+
   gem.add_development_dependency 'rspec', '~> 2.7'
   gem.add_development_dependency 'nokogiri'
   gem.add_development_dependency 'vcr'
