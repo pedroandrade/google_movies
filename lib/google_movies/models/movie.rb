@@ -5,8 +5,8 @@ module GoogleMovies
 
     def initialize(name, id, information, times)
       @name = name
-			@id = id
-			@information = information
+      @id = id
+      @information = information.gsub("- Trailer - IMDb - : ", "").strip
       @times = times
     end
   end
