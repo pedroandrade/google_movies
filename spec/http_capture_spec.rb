@@ -38,6 +38,6 @@ describe HttpCapture do
   end
 
   it "should return movie with times" do
-    subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].movies[0].times.should == "9ff9a2dc6776dc6e"
+    subject.movies_theaters("http://www.google.com/movies?near=Joao%20Pessoa")[0].movies[0].times.should be_an_instance_of(Array)
   end
 end
