@@ -12,10 +12,14 @@ module HttpCapture
     @http_address = URI.parse(URI.encode(page_url.strip))
     @doc = page_doc(@http_address)
     pages = @doc.css('div.n a[@href]')
-    pages.each do |p|
-      http_address = URI.parse(URI.encode("http://google.com#{p.values.first.strip}"))
-      doc = page_doc(http_address)
-      get_information(doc)
+    unless pages.empty?
+      pages.each do |p|
+        http_address = URI.parse(URI.encode("http://google.com#{p.values.first.strip}"))
+        doc = page_doc(http_address)
+        get_information(doc)
+      end
+    else
+      get_information(@doc)
     end
     @movies_theater
   end
