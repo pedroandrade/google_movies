@@ -59,10 +59,11 @@ module HttpCapture
   end
 
   def get_movies_times(movie)
-    times = ""
-    movie.css(".times").each do |time|
-      times << time.children.first.text
-    end
+      times = ""
+      movie.css(".times").each do |time|
+        times = time.children.text.split('&nbsp')
+      end
+      times
   end
 
   def get_movies(theater)
