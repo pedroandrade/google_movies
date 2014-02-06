@@ -8,11 +8,10 @@ module GoogleMovies
 
   class Client
 
-    ROOT_URL = "http://google.com/movies"
+    ROOT_URL = 'http://google.com/movies'
 
     def initialize(city)
-      @city = city
-      @http_client = HttpCapture::Client.new("#{ROOT_URL}?near=#{@city}")
+      @http_client = HttpCapture::Client.new("#{ROOT_URL}?near=#{city}")
     end
 
     def movies_theaters
