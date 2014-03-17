@@ -1,10 +1,10 @@
 # encoding: utf-8
 $:.unshift File.expand_path('../models', __FILE__)
 require 'nokogiri'
-require 'net/http'
 require 'uri'
 require 'movie'
 require 'movie_theater'
+require 'open-uri'
 
 module HttpCapture
 
@@ -13,7 +13,7 @@ module HttpCapture
     doc          = page_doc(http_address)
     pages        = doc.css('div.n a[@href]')
 
-    unless pages.empty?
+    if !pages.empty?
       pages.each do |p|
         http_address = URI.parse(URI.encode("http://google.com#{p.values.first.strip}"))
         doc = page_doc(http_address)
@@ -34,14 +34,14 @@ module HttpCapture
   private
 
     def page_doc(uri)
-      Nokogiri::HTML(Net::HTTP.get_response(uri).body)
+      Nokogiri::HTML(open(uri), nil, "UTF-8")
     end
 
     def create_movie_theater_with(theater, movies)
       id   = theater.search('div[@class="desc"]').first.attr("id").gsub("theater_", "")
       name = theater.search('h2[@class="name"]').first.content
       info = theater.search('div[@class="info"]').first.content
-
+      
       GoogleMovies::MovieTheater.new(name, info, id, movies)
     end
 
@@ -72,12 +72,11 @@ module HttpCapture
   class Client
     include HttpCapture
 
-    attr_accessor :movies_theater
+    attr_accessor :movie_theaters
 
     def initialize(page_url)
-      @movies_theater = movies_theaters(page_url)
+      @movie_theaters = movies_theaters(page_url)
     end
 
   end
 end
-

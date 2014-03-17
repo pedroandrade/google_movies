@@ -14,8 +14,8 @@ module GoogleMovies
       @http_client = HttpCapture::Client.new("#{ROOT_URL}?near=#{city}")
     end
 
-    def movies_theaters
-      @http_client.movies_theater
+    def movie_theaters
+      @http_client.movie_theaters
     end
 
   end
