@@ -3,7 +3,6 @@ $:.unshift File.expand_path('../../lib', __FILE__)
 $:.unshift File.expand_path('../../lib/google_movies', __FILE__)
 
 require 'rspec'
-require 'rack/test'
 require 'google_movies'
 require 'http_capture'
 require 'vcr'
