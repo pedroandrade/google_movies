@@ -19,11 +19,11 @@ Or install it yourself as:
 
 ## Usage
 
-		client = GoogleMovies::Client.new("Joao Pessoa")
+    client = GoogleMovies::Client.new("Joao Pessoa")
 
 ### Getting Movies theaters and movies information.
 
-		client.movies_theaters
+    client.movie_theaters
 
 ### Contributers
 
