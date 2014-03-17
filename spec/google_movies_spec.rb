@@ -6,7 +6,7 @@ describe GoogleMovies do
 
   it 'returns movies theaters' do
     VCR.use_cassette('google_movies') do
-      subject.movies_theaters.size.should > 0
+      subject.movie_theaters.size.should > 0
     end
   end
 
