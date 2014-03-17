@@ -3,6 +3,8 @@
 Ruby wrapper to access google movies informations.
 Google does not provide a api interface to access google movies information, this gem get the html page of google movies and parser it using nokogiri to get the movies theaters information.
 
+[![Build Status](https://travis-ci.org/pedroandrade/google_movies.png?branch=master)](https://travis-ci.org/pedroandrade/google_movies)
+
 ## Installation
 
 Add this line to your application's Gemfile:
